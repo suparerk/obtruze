@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
-
+<% for attribute in @keyword.attributes.keys %>
+  <p><%= attribute.humanize %> <%= @keyword.attributes[attribute].to_s %></p>
+<% end %>
 <%= link_to 'Edit', edit_keyword_path(@keyword) %> |
 <%= link_to 'Back', keywords_path %>

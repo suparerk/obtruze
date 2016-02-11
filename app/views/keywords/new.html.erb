@@ -3,3 +3,10 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', keywords_path %>
+
+<h3>Import a CSV File</h3>
+  <%= form_tag keywords_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import CSV" %>
+  <% end %>
+</div>
