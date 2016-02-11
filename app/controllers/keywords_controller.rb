@@ -24,8 +24,13 @@ class KeywordsController < ApplicationController
   # POST /keywords
   # POST /keywords.json
   def create
-    @keyword = Keyword.new(keyword_params)
-
+    keyword_array = Keyword.import(params[:file])
+    keyword_array.each do |k|
+      @keyword = Keyword.where(title: k).first_or_initialize
+      @keyword.save
+    end
+    binding.pry
+    
     respond_to do |format|
       if @keyword.save
         format.html { redirect_to @keyword, notice: 'Keyword was successfully created.' }

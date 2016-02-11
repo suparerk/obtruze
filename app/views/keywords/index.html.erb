@@ -12,6 +12,7 @@
   <tbody>
     <% @keywords.each do |keyword| %>
       <tr>
+        <td><%= keyword.title %></td>
         <td><%= link_to 'Show', keyword %></td>
         <td><%= link_to 'Edit', edit_keyword_path(keyword) %></td>
         <td><%= link_to 'Destroy', keyword, method: :delete, data: { confirm: 'Are you sure?' } %></td>
