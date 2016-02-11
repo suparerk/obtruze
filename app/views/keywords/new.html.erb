@@ -1,12 +1,11 @@
 <h1>New Keyword</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', keywords_path %>
+<%#= render 'form' %>
 
 <h3>Import a CSV File</h3>
   <%= form_tag keywords_path, multipart: true do %>
     <%= file_field_tag :file %>
     <%= submit_tag "Import CSV" %>
   <% end %>
-</div>
+
+<%= link_to 'Back', keywords_path %>
