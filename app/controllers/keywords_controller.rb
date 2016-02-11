@@ -29,11 +29,10 @@ class KeywordsController < ApplicationController
       @keyword = Keyword.where(title: k).first_or_initialize
       @keyword.save
     end
-    binding.pry
-    
+
     respond_to do |format|
       if @keyword.save
-        format.html { redirect_to @keyword, notice: 'Keyword was successfully created.' }
+        format.html { redirect_to keywords_path, notice: 'Keyword was successfully created.' }
         format.json { render :show, status: :created, location: @keyword }
       else
         format.html { render :new }

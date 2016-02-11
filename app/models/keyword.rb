@@ -1,6 +1,5 @@
 class Keyword < ActiveRecord::Base
-  require 'csv'
-
+  after_create :save_result
   def self.import(file)
     keyword_array = Array.new
     CSV.foreach(file.path) do |row|
@@ -8,4 +7,9 @@ class Keyword < ActiveRecord::Base
     end
     keyword_array.flatten
   end
+
+  def save_result
+    search_service = SearchService.new(self.title)
+  end
+
 end
