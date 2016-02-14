@@ -4,7 +4,7 @@ class SearchService
 
   def initialize(keyword)
     @keyword = keyword
-    @page = open "https://www.google.com/search?q=#{@keyword}&pws=0&gl=us&gws_rd=cr#q=flower+delivery&pws=0&gl=us&start=0"
+    @page = open "https://www.google.com/search?q=#{keyword}&pws=0&gl=us&gws_rd=cr"
     @html = Nokogiri::HTML @page
   end
 
@@ -30,7 +30,9 @@ class SearchService
   def get_result_page
     # @html.to_s.force_encoding('Windows-1252').encode('UTF-8')
     # @html.to_s.encode("iso-8859-1").force_encoding("utf-8")
+    # @html.text.gsub('®','')
     @html.text
+
   end
 
   def get_top_ads_results
