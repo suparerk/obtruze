@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210162043) do
+ActiveRecord::Schema.define(version: 20160214105851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,24 @@ ActiveRecord::Schema.define(version: 20160210162043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "results", force: :cascade do |t|
+    t.integer  "keyword_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "no_top_ads"
+    t.integer  "no_right_ads"
+    t.integer  "total_ads"
+    t.string   "top_ads_url",                       array: true
+    t.string   "right_ads_url",                     array: true
+    t.integer  "no_non_ads"
+    t.string   "non_ads_url",                       array: true
+    t.integer  "total_links"
+    t.string   "total_search_results"
+    t.text     "page_cache"
+  end
+
+  add_index "results", ["keyword_id"], name: "index_results_on_keyword_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -40,4 +58,5 @@ ActiveRecord::Schema.define(version: 20160210162043) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "results", "keywords"
 end

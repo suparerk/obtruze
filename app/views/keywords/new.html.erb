@@ -1,10 +1,11 @@
+<p id="notice"><%= notice %></p>
 <h1>New Keyword</h1>
 
 <%#= render 'form' %>
 
 <h3>Import a CSV File</h3>
   <%= form_tag keywords_path, multipart: true do %>
-    <%= file_field_tag :file %>
+    <%= file_field_tag :file, :accept => 'text/csv' %>
     <%= submit_tag "Import CSV" %>
   <% end %>
 
