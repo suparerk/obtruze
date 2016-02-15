@@ -1,8 +1,19 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users
   root 'keywords#index'
 
   resources :keywords
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :keywords
+    end
+  end
+
+  mount Sidekiq::Web => '/sidekiq'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

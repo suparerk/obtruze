@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 <% for attribute in @keyword.attributes.keys %>
-  <p><%= attribute.humanize %> <%= @keyword.attributes[attribute].to_s %></p>
+  <p><strong><%= attribute.humanize %> : </strong> <%= @keyword.attributes[attribute].to_s %></p>
+<% end %>
+<% if @keyword.result.present? %>
+  <% for attribute in @keyword.result.attributes.keys %>
+    <p style="word-wrap:break-word;"><strong><%= attribute.humanize %> : </strong> <%= @keyword.result.attributes[attribute].to_s %></p>
+  <% end %>
 <% end %>
 <%= link_to 'Edit', edit_keyword_path(@keyword) %> |
 <%= link_to 'Back', keywords_path %>
