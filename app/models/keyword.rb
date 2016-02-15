@@ -19,14 +19,8 @@ class Keyword < ActiveRecord::Base
   end
 
   def save_result
-    search_service = SearchService.new(self.title)
-    search_service.search_results
-    begin
-      self.build_result(search_service.search_results)
-      self.save
-    rescue => e
-      logger.warn "Unable to save keyword result : #{e}"
-    end
+    time = rand(1..5)
+    puts "-----> Search for #{self.title} will begin in #{time.minutes} seconds"
+    SearchWorker.perform_in(time.minutes, self.id)
   end
-
 end

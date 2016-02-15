@@ -9,6 +9,7 @@ class KeywordsController < ApplicationController
 
   # GET /keywords/1
   def show
+
   end
 
   # GET /keywords/new

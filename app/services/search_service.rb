@@ -20,18 +20,19 @@ class SearchService
                   :total_ads => top_ads_results.count + right_ads_results.count,
                   :no_non_ads => non_ads_results.count,
                   :non_ads_url => non_ads_results,
-                  :total_links => top_ads_results.count + right_ads_results.count + right_ads_results.count,
+                  :total_links => top_ads_results.count + right_ads_results.count + right_ads_results.count + non_ads_results.count,
                   :total_search_results => get_all_results,
                   :page_cache => get_result_page
     }
   end
 
-
+  private
+  
   def get_result_page
     # @html.to_s.force_encoding('Windows-1252').encode('UTF-8')
     # @html.to_s.encode("iso-8859-1").force_encoding("utf-8")
     # @html.text.gsub('®','')
-    @html.text
+    @html.to_s
 
   end
 
