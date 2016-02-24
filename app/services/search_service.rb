@@ -1,5 +1,4 @@
 class SearchService
-  require 'nokogiri'
   require 'open-uri'
 
   def initialize(keyword)
@@ -27,7 +26,7 @@ class SearchService
   end
 
   private
-  
+
   def get_result_page
     # @html.to_s.force_encoding('Windows-1252').encode('UTF-8')
     # @html.to_s.encode("iso-8859-1").force_encoding("utf-8")

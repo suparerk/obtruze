@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  use_doorkeeper
   devise_for :users
   root 'keywords#index'
 
@@ -8,9 +9,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
+      get '/me' => 'api#me'
       resources :keywords
     end
   end
+
 
   mount Sidekiq::Web => '/sidekiq'
 
