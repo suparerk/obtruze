@@ -3,6 +3,7 @@ module Api
     class KeywordsController < Api::V1::ApiController
 
       skip_before_action :authenticate_token
+      before_action :doorkeeper_authorize!, only: :index
       before_action :set_keyword, only: [:show, :edit, :update, :destroy]
       respond_to :json
 
